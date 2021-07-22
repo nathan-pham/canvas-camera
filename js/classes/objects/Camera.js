@@ -4,6 +4,7 @@ export default class Camera {
         this.y = y
 
         this.mouse = {down: false, first: [0, 0], last: [0, 0]}
+        this.offset = {x: 0, y: 0}
         this.scroll = 1
 
         this.addEventListeners()
@@ -30,16 +31,16 @@ export default class Camera {
         })
     }
 
-    render({ctx}) {
-        if(this.mouse.down) {
-            const {first, last} = this.mouse
-            ctx.strokeStyle = "#000"
-            ctx.lineWidth = 4
+    // render({ctx}) {
+    //     if(this.mouse.down) {
+    //         const {first, last} = this.mouse
+    //         ctx.strokeStyle = "#000"
+    //         ctx.lineWidth = 4
 
-            ctx.beginPath()
-            ctx.moveTo(...first)
-            ctx.lineTo(...last)
-            ctx.stroke()
-        }
-    }
+    //         ctx.beginPath()
+    //         ctx.moveTo(...first)
+    //         ctx.lineTo(...last)
+    //         ctx.stroke()
+    //     }
+    // }
 }
