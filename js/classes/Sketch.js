@@ -39,13 +39,15 @@ export default class Sketch {
     render() {
         this.step += 0.05
 
+        this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
+
         for(const object of this.objects) {
             if(typeof object.update == "function") {
                 object.update(this)
             }
 
             if(typeof object.render == "function") {
-                object.render(this.ctx)
+                object.render(this)
             }
         }
 

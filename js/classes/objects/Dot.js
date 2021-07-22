@@ -5,9 +5,9 @@ export default class Dot {
         this.radius = 10
     }
 
-    render(ctx) {
+    render({ctx}) {
         ctx.fillStyle = "#000"
-        
+
         ctx.strokeStyle = "#fff"
         ctx.lineWidth = 4
 
