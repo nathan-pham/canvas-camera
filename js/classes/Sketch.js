@@ -8,8 +8,10 @@ export default class Sketch {
         this.createCanvas()
     }
     
-    add(...objects) {
-        this.objects.push(...objects)
+    add(objects) {
+        for(const object of objects) {
+            this.objects.push(object)
+        }
     }
 
     createCanvas() {
@@ -27,7 +29,9 @@ export default class Sketch {
                 object.update(this)
             }
 
-            object.render()
+            if(typeof object.render == "function") {
+                object.render(this.ctx)
+            }
         }
 
         window.requestAnimationFrame(() => this.render())
