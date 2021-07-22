@@ -3,7 +3,7 @@ export default class Camera {
         this.x = x
         this.y = y
 
-        this.mouse = {down: false, first: [0, 0], last: [0, 0]}
+        this.mouse = {down: false, first: [0, 0], last: [0, 0], current: [0, 0]}
         this.offset = {x: 0, y: 0}
         this.scroll = 1
 
@@ -20,6 +20,10 @@ export default class Camera {
             Object.assign(this.mouse, {down: false, first: [0, 0], last: [0, 0]})
         })
 
+        document.body.addEventListener("mouseout", e => {
+            Object.assign(this.mouse, {down: false, first: [0, 0], last: [0, 0]})
+        })
+
         document.body.addEventListener("mousemove", e => {
             if(this.mouse.down) {
                 this.mouse.last = [e.clientX, e.clientY]
@@ -28,6 +32,7 @@ export default class Camera {
 
         window.addEventListener("wheel", e => {
             this.scroll += e.deltaY < 0 ? 0.1 : -0.1
+            this.mouse.current = [e.clientX, e.clientY]
         })
     }
 

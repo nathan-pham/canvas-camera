@@ -60,12 +60,15 @@ export default class Sketch {
             this.ctx.save()
             const dampen = 0.1
 
-            const {mouse: {first, last}} = this.camera
+            const {mouse: {first, last, current}} = this.camera
             this.camera.offset.x += (first[0] - last[0]) * dampen
             this.camera.offset.y += (first[1] - last[1]) * dampen
 
             this.ctx.translate(this.camera.offset.x, this.camera.offset.y)
+            
+            this.ctx.translate(current[0], current[1])
             this.ctx.scale(this.camera.scroll, this.camera.scroll)
+            this.ctx.translate(-current[0], -current[1])
         }
 
         for(const object of this.objects) {
