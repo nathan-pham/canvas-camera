@@ -3,7 +3,8 @@ export default class Camera {
         this.x = x
         this.y = y
 
-        this.state = {down: false, first: [0, 0], last: [0, 0]}
+        this.mouse = {down: false, first: [0, 0], last: [0, 0]}
+        this.scroll = 1
 
         this.addEventListeners()
     }
@@ -11,23 +12,27 @@ export default class Camera {
     addEventListeners() {
         document.body.addEventListener("mousedown", e => {
             const position = [e.clientX, e.clientY]
-            Object.assign(this.state, {down: true, first: position, last: position})
+            Object.assign(this.mouse, {down: true, first: position, last: position})
         })
 
         document.body.addEventListener("mouseup", e => {
-            this.state.down = false
+            this.mouse.down = false
         })
 
         document.body.addEventListener("mousemove", e => {
-            if(this.state.down) {
-                this.state.last = [e.clientX, e.clientY]
+            if(this.mouse.down) {
+                this.mouse.last = [e.clientX, e.clientY]
             }
+        })
+
+        window.addEventListener("wheel", e => {
+            this.scroll += e.deltaY < 0 ? 0.1 : -0.1
         })
     }
 
     render({ctx}) {
-        if(this.state.down) {
-            const {first, last} = this.state
+        if(this.mouse.down) {
+            const {first, last} = this.mouse
             ctx.strokeStyle = "#000"
             ctx.lineWidth = 4
 
