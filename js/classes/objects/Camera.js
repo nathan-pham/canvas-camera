@@ -16,7 +16,7 @@ export default class Camera {
         })
 
         document.body.addEventListener("mouseup", e => {
-            this.mouse.down = false
+            Object.assign(this.mouse, {down: false, first: [0, 0], last: [0, 0]})
         })
 
         document.body.addEventListener("mousemove", e => {

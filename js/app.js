@@ -5,15 +5,17 @@ import Dot from "./classes/objects/Dot.js"
 import Utils from "./classes/Utils.js"
 
 const sketch = new Sketch({container: "#canvas__wrapper"})
-const generator = new Utils()
+const utils = new Utils()
 
 for(let i = 0; i < 100; i++) {
     sketch.add(new Dot(
-        generator.randomInt(0, sketch.dimensions.width), 
-        generator.randomInt(0, sketch.dimensions.height)
+        utils.randomInt(0, sketch.dimensions.width), 
+        utils.randomInt(0, sketch.dimensions.height)
     ))
 }
 
-sketch.add(new Camera())
+const camera = new Camera()
+sketch.camera = camera
+sketch.add(camera)
 
 sketch.render()

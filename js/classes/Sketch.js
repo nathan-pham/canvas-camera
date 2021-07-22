@@ -40,6 +40,7 @@ export default class Sketch {
         this.step += 0.05
 
         this.ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height)
+        // this.ctx.scale(this.camera.scroll, this.camera.scroll)
 
         for(const object of this.objects) {
             if(typeof object.update == "function") {
@@ -50,6 +51,7 @@ export default class Sketch {
                 object.render(this)
             }
         }
+
 
         window.requestAnimationFrame(() => this.render())
     }
