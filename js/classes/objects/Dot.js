@@ -7,11 +7,13 @@ export default class Dot {
 
     render(ctx) {
         ctx.fillStyle = "#000"
+        
+        ctx.strokeStyle = "#fff"
+        ctx.lineWidth = 4
 
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI)
+        ctx.stroke()
         ctx.fill()
     }
 }
-
-console.log(sin(100))

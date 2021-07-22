@@ -1,10 +1,4 @@
-class Utils {
-    globalize() {
-        Object.getOwnPropertyNames(Math).forEach(key => {
-            window.key = Math[key]
-        })
-    }
-
+export default class Utils {
     randomFloat(min, max) {
         return Math.random() * (max - min) + min
     }
@@ -13,6 +7,3 @@ class Utils {
         return Math.floor(this.randomFloat(min, max))
     }
 }
-
-const utils = new Utils()
-export default utils

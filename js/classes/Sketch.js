@@ -1,14 +1,29 @@
 export default class Sketch {
     constructor({container=document.body}={}) {
-        this.container = container
-
+        this.container = typeof container == "string" ? document.querySelector(container) : container
+        this.dimensions = {width: this.container.offsetWidth, height: this.container.offsetHeight}
         this.objects = []
         this.step = 0
         
         this.createCanvas()
+
+        this.resize()
+        document.addEventListener("resize", () => this.resize())
     }
     
-    add(objects) {
+    resize() {
+        const pixelize = (dimensions) => (
+            Object.keys(dimensions).reduce((acc, cur) => ({
+                ...acc,
+                [cur]: dimensions[cur] + "px"
+            }), {})
+        )
+
+        Object.assign(this.canvas, this.dimensions)
+        Object.assign(this.canvas.style, pixelize(this.dimensions))
+    }
+    
+    add(...objects) {
         for(const object of objects) {
             this.objects.push(object)
         }
